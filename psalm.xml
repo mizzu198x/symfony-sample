@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<psalm
+        errorLevel="1"
+        resolveFromConfigFile="true"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="https://getpsalm.org/schema/config"
+        xsi:schemaLocation="https://getpsalm.org/schema/config vendor/vimeo/psalm/config.xsd"
+>
+  <projectFiles>
+    <directory name="src" />
+    <ignoreFiles>
+      <directory name="vendor" />
+    </ignoreFiles>
+  </projectFiles>
+
+  <issueHandlers>
+    <!-- level 3 issues - slightly lazy code writing, but provably low false-negatives -->
+
+    <DeprecatedMethod errorLevel="info" />
+    <DeprecatedProperty errorLevel="info" />
+    <DeprecatedClass errorLevel="info" />
+    <DeprecatedConstant errorLevel="info" />
+    <DeprecatedFunction errorLevel="info" />
+    <DeprecatedInterface errorLevel="info" />
+    <DeprecatedTrait errorLevel="info" />
+
+    <PropertyNotSetInConstructor errorLevel="info" />
+    <MissingConstructor errorLevel="info" />
+    <MissingClosureParamType errorLevel="info" />
+    <MissingClosureReturnType errorLevel="info" />
+  </issueHandlers>
+</psalm>

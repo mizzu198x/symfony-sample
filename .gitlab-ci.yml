@@ -1,0 +1,45 @@
+stages:
+  - Dependencies
+  - Static Analysis
+
+variables:
+  # TODO Change image
+  BASE_IMAGE: php:8.1-cli-alpine
+
+default:
+  image: ${BASE_IMAGE}
+  tags:
+    - k8s
+  retry:
+    max: 2
+    when:
+      - runner_system_failure
+
+workflow:
+  rules:
+    - if: $CI_COMMIT_BRANCH
+      when: always
+    - when: never
+
+include:
+  - local: '/.ci/quality.yaml'
+  - local: '/.ci/static-analysis.yaml'
+
+composer:
+  stage: Dependencies
+  cache:
+    key:
+      files:
+        - composer.lock
+        - symfony.lock
+    paths:
+      - cache/composer
+  script:
+    - /load-key.sh "${SSH_KNOWN_HOSTS}" "${SSH_KEY}"
+    - composer config cache-dir cache/composer
+    - composer install -n --no-progress
+  artifacts:
+    expire_in: 1 day
+    paths:
+      - vendor/
+      - public/bundles

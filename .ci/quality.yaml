@@ -1,0 +1,16 @@
+php-cs-fixer:
+  stage: Static Analysis
+  image: ${BASE_IMAGE}
+  needs:
+    - composer
+  script:
+    - vendor/bin/php-cs-fixer fix -v --dry-run
+# Quality Tests <<<
+
+phpcs:
+  stage: Static Analysis
+  image: ${BASE_IMAGE}
+  needs:
+    - composer
+  script:
+    - vendor/bin/phpcs --standard=phpcs_ruleset.xml

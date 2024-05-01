@@ -1,0 +1,15 @@
+phpstan:
+  stage: Static Analysis
+  image: ${BASE_IMAGE}
+  needs:
+    - composer
+  script:
+    - php -d memory_limit=-1 vendor/bin/phpstan analyse $(pwd)/src --level 9
+
+psalm:
+  stage: Static Analysis
+  image: ${BASE_IMAGE}
+  needs:
+    - composer
+  script:
+    - vendor/bin/psalm
