@@ -4,13 +4,9 @@ declare(strict_types=1);
 
 namespace App\Tests\UnitTests\Model\Broadcast;
 
-use App\Controller\BroadcastController;
 use App\Entity\Product;
 use App\Model\Broadcast\ProductDataProcessor;
 use Mockery\Adapter\Phpunit\MockeryTestCase;
-use PHPUnit\Framework\MockObject\MockObject;
-use Symfony\Component\Messenger\Envelope;
-use Symfony\Component\Messenger\MessageBusInterface;
 use Symfony\Sample\Request\BroadcastListener\BroadcastProductRequest;
 use Symfony\Sample\Request\BroadcastListener\Product\ListPrice;
 
