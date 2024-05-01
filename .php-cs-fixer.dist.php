@@ -17,7 +17,7 @@ return (new PhpCsFixer\Config())
         ],
     ])
     ->setFinder(PhpCsFixer\Finder::create()
-        ->in('src')
+        ->in(['src', 'tests'])
     )
     ;
 

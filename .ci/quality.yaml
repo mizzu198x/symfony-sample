@@ -14,3 +14,18 @@ phpcs:
     - composer
   script:
     - vendor/bin/phpcs --standard=phpcs_ruleset.xml
+
+unit-tests:
+  stage: Test
+  image: ${BASE_IMAGE}
+  coverage: '/^\s*Lines:\s*\d+.\d+\%/'
+  needs:
+    - composer
+  script:
+    - vendor/bin/phpunit --testsuite=UnitTests --colors=never | tee -a output
+    - cat output | php bin/validate-phpunit-coverage.php
+
+  artifacts:
+    expire_in: 1 day
+    paths:
+      - report/

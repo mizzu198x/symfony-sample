@@ -13,7 +13,7 @@ use Symfony\Sample\Request\BroadcastListener\BroadcastProductRequest;
 
 class BroadcastProductHandler implements MessageHandlerInterface
 {
-    private const OUT_OF_DATE_REQUEST_MESSAGE = 'BroadcastProductRequest is out of date';
+    public const OUT_OF_DATE_REQUEST_MESSAGE = 'BroadcastProductRequest is out of date';
     public function __construct(
         private readonly ProductRepository $productRepository,
         private readonly ProductDataProcessor $dataProcessor,
