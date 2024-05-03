@@ -21,17 +21,9 @@ class ProductDataProcessor
         $product->setPrice($request->listPrice->salePrice);
         $product->setLastUpdatedAt($request->updatedAt);
 
-        if (null !== $request->description) {
-            $product->setDescription($request->description);
-        }
-        if (null !== $request->listPrice->specialPrice) {
-            $product->setSpecialPrice($request->listPrice->specialPrice);
-        }
-        if (null !== $request->listPrice->specialFrom) {
-            $product->setSpecialFrom($request->listPrice->specialFrom);
-        }
-        if (null !== $request->listPrice->specialTo) {
-            $product->setSpecialTo($request->listPrice->specialTo);
-        }
+        $product->setDescription($request->description);
+        $product->setSpecialPrice($request->listPrice->specialPrice);
+        $product->setSpecialFrom($request->listPrice->specialFrom);
+        $product->setSpecialTo($request->listPrice->specialTo);
     }
 }

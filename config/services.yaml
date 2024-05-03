@@ -33,3 +33,9 @@ services:
     App\Helper\Request\RequestBodyResolver:
         tags:
             - { name: controller.argument_value_resolver, priority: 50 }
+
+    Gedmo\Timestampable\TimestampableListener:
+        tags:
+            - { name: doctrine.event_subscriber, connection: default }
+        calls:
+            - [ setAnnotationReader, [ "@annotation_reader" ] ]

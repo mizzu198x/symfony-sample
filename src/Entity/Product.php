@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
+use App\Helper\TimestampableEntityTrait;
 use App\Repository\ProductRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
@@ -14,6 +15,8 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 #[UniqueEntity('sku')]
 class Product
 {
+    use TimestampableEntityTrait;
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: Types::INTEGER)]
@@ -94,7 +97,7 @@ class Product
         return $this->description;
     }
 
-    public function setDescription(string $description): self
+    public function setDescription(?string $description): self
     {
         $this->description = $description;
 
@@ -142,7 +145,7 @@ class Product
         return $this->specialPrice;
     }
 
-    public function setSpecialPrice(float $specialPrice): self
+    public function setSpecialPrice(?float $specialPrice): self
     {
         $this->specialPrice = $specialPrice;
 
@@ -154,7 +157,7 @@ class Product
         return $this->specialFrom;
     }
 
-    public function setSpecialFrom(\DateTime $specialFrom): self
+    public function setSpecialFrom(?\DateTime $specialFrom): self
     {
         $this->specialFrom = $specialFrom;
 
@@ -166,7 +169,7 @@ class Product
         return $this->specialTo;
     }
 
-    public function setSpecialTo(\DateTime $specialTo): self
+    public function setSpecialTo(?\DateTime $specialTo): self
     {
         $this->specialTo = $specialTo;
 
